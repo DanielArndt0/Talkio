@@ -1,0 +1,54 @@
+name: Flutter Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.2'
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Decode google-services.json
+        run: echo "${{ secrets.FIREBASE_JSON }}" > android/app/google-services.json
+
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/upload-keystore.p12
+
+      - name: Create key.properties
+        run: |
+          echo "storeFile=upload-keystore.p12" > android/key.properties
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+
+      - name: Create env.prd.properties
+        run: echo "${{ secrets.ENV_PRD_PROPERTIES }}" > env.json
+
+      - name: Decode env.json
+        run: |
+          echo "${{ secrets.ENV_PRD_JSON_BASE64 }}" | base64 -d > env.json
+
+      - name: Build APK
+        run: flutter build apk --release --dart-define-from-file=env.json
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: talkio-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
