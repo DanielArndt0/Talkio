@@ -49,13 +49,18 @@ flutter build apk --release --dart-define-from-file=env/env.prd.json
 ## 📂 Project Structure
 ```bash
 lib/
+├── app/             # App configuration and main setup
 ├── components/      # Reusable UI widgets
-├── controllers/     # App logic and state
-├── models/          # Data models
+├── controllers/     # Business logic and state management
+├── errors/          # Custom error classes and handlers
+├── middlewares/     # Request/response interceptors or guards
 ├── modals/          # Modals and bottom sheets
-├── screens/         # UI screens
-├── services/        # Firebase and other services
-└── utils/           # Helpers and formatters
+├── models/          # Data models and entities
+├── providers/       # Dependency injection and global providers
+├── screens/         # UI screens and views
+├── services/        # External services and APIs (e.g., Firebase)
+├── utils/           # Utility functions and helpers
+└── validators/      # Input validators and schemas
 ```
 
 ## ENV Structure
