@@ -46,7 +46,7 @@ jobs:
         run: flutter build apk --release --dart-define-from-file=env/env.prd.properties
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           name: talkio-apk
           path: build/app/outputs/flutter-apk/app-release.apk
