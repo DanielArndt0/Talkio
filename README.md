@@ -57,6 +57,21 @@ lib/
 ├── services/        # Firebase and other services
 └── utils/           # Helpers and formatters
 ```
+
+## ENV Structure
+```json
+{
+  "androidApiKey": "androidApiKey",
+  "androidAppId": "androidAppId",
+  "iosApiKey": "iosApiKey",
+  "iosAppId": "iosAppId",
+  "iosBundleId": "iosBundleId",
+  "projectId": "projectId",
+  "storageBucket": "storageBucket",
+  "messagingSenderId": "messagingSenderId"
+}
+```
+
 ## ✨ Author
 
 Made with 💙 by [@DanielArndt0](https://github.com/DanielArndt0)
