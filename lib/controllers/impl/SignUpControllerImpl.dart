@@ -1,11 +1,11 @@
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:flutter/src/widgets/form.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:training_app/controllers/NavigationController.dart';
-import 'package:training_app/controllers/SignUpController.dart';
-import 'package:training_app/errors/AuthException.dart';
-import 'package:training_app/services/AuthService.dart';
-import 'package:training_app/services/CloudDBService.dart';
+import 'package:talkio/controllers/NavigationController.dart';
+import 'package:talkio/controllers/SignUpController.dart';
+import 'package:talkio/errors/AuthException.dart';
+import 'package:talkio/services/AuthService.dart';
+import 'package:talkio/services/CloudDBService.dart';
 
 class SignUpControllerImpl implements SignUpController {
   SignUpControllerImpl({

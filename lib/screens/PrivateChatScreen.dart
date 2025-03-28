@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/components/AppFormField.dart';
-import 'package:training_app/components/MessageBubble.dart';
-import 'package:training_app/controllers/PrivateChatController.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/MessageModel.dart';
-import 'package:training_app/utils/DateFormatter.dart';
-import 'package:training_app/validators/FormValidator.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/components/AppFormField.dart';
+import 'package:talkio/components/MessageBubble.dart';
+import 'package:talkio/controllers/PrivateChatController.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/MessageModel.dart';
+import 'package:talkio/utils/DateFormatter.dart';
+import 'package:talkio/validators/FormValidator.dart';
 
 class PrivateChatScreen extends StatefulWidget {
   final ChatModel chat;

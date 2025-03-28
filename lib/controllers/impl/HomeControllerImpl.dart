@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:training_app/controllers/HomeController.dart';
-import 'package:training_app/controllers/NavigationController.dart';
-import 'package:training_app/errors/CloudException.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/UserModel.dart';
-import 'package:training_app/services/AuthService.dart';
-import 'package:training_app/services/CloudDBService.dart';
+import 'package:talkio/controllers/HomeController.dart';
+import 'package:talkio/controllers/NavigationController.dart';
+import 'package:talkio/errors/CloudException.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/UserModel.dart';
+import 'package:talkio/services/AuthService.dart';
+import 'package:talkio/services/CloudDBService.dart';
 
 class HomeControllerImpl implements HomeController {
   final TextEditingController _searchBarController = TextEditingController();

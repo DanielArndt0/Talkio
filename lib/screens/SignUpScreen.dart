@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/components/AppFormField.dart';
-import 'package:training_app/components/FutureBlueButton.dart';
-import 'package:training_app/components/SignInComponent.dart';
-import 'package:training_app/components/TalkyLogo.dart';
-import 'package:training_app/controllers/SignUpController.dart';
-import 'package:training_app/validators/FormValidator.dart';
+import 'package:talkio/components/AppFormField.dart';
+import 'package:talkio/components/FutureBlueButton.dart';
+import 'package:talkio/components/SignInComponent.dart';
+import 'package:talkio/components/TalkioLogo.dart';
+import 'package:talkio/controllers/SignUpController.dart';
+import 'package:talkio/validators/FormValidator.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> with FormValidator {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Row(),
-              const TalkyLogo(size: 40),
+              const TalkioLogo(size: 40),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> with FormValidator {
                       fontSize: 18,
                     ),
                   ),
-                  TalkyLogo(size: 18),
+                  TalkioLogo(size: 18),
                 ],
               ),
               const SizedBox(height: 40),

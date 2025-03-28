@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/components/AppFormField.dart';
-import 'package:training_app/components/ChatCard.dart';
-import 'package:training_app/components/TalkyLogo.dart';
-import 'package:training_app/controllers/HomeController.dart';
-import 'package:training_app/modals/DeleteContactModal.dart';
-import 'package:training_app/models/UserModel.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/components/AppFormField.dart';
+import 'package:talkio/components/ChatCard.dart';
+import 'package:talkio/components/TalkioLogo.dart';
+import 'package:talkio/controllers/HomeController.dart';
+import 'package:talkio/modals/DeleteContactModal.dart';
+import 'package:talkio/models/UserModel.dart';
 
 class AddContactModal extends StatelessWidget {
   final HomeController controller;
@@ -32,7 +32,7 @@ class AddContactModal extends StatelessWidget {
                 ),
               ],
             ),
-            const TalkyLogo(size: 40),
+            const TalkioLogo(size: 40),
             const SizedBox(height: 18),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,

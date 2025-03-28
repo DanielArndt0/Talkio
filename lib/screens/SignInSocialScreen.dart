@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/components/AppFormField.dart';
-import 'package:training_app/components/FutureBlueButton.dart';
-import 'package:training_app/components/SignUpButton.dart';
-import 'package:training_app/components/TalkyLogo.dart';
-import 'package:training_app/controllers/SignInSocialController.dart';
-import 'package:training_app/modals/ForgotPasswordModal.dart';
-import 'package:training_app/validators/FormValidator.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/components/AppFormField.dart';
+import 'package:talkio/components/FutureBlueButton.dart';
+import 'package:talkio/components/SignUpButton.dart';
+import 'package:talkio/components/TalkioLogo.dart';
+import 'package:talkio/controllers/SignInSocialController.dart';
+import 'package:talkio/modals/ForgotPasswordModal.dart';
+import 'package:talkio/validators/FormValidator.dart';
 
 class SignInSocialScreen extends StatefulWidget {
   const SignInSocialScreen({super.key});
@@ -37,7 +37,7 @@ class _SignInSocialScreenState extends State<SignInSocialScreen>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Row(),
-              const TalkyLogo(size: 40),
+              const TalkioLogo(size: 40),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -48,7 +48,7 @@ class _SignInSocialScreenState extends State<SignInSocialScreen>
                       fontSize: 18,
                     ),
                   ),
-                  TalkyLogo(size: 18),
+                  TalkioLogo(size: 18),
                 ],
               ),
               const SizedBox(height: 40),

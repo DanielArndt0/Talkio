@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:training_app/errors/CloudException.dart';
-import 'package:training_app/errors/ContactAlreadyExists.dart';
-import 'package:training_app/errors/ContactNotFound.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/UserModel.dart';
-import 'package:training_app/services/CloudDBService.dart';
+import 'package:talkio/errors/CloudException.dart';
+import 'package:talkio/errors/ContactAlreadyExists.dart';
+import 'package:talkio/errors/ContactNotFound.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/UserModel.dart';
+import 'package:talkio/services/CloudDBService.dart';
 
 class CloudDBServiceImpl extends CloudDBService {
   CloudDBServiceImpl._();

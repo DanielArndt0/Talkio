@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/controllers/HomeController.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/controllers/HomeController.dart';
 
 class DeleteContactModal extends StatelessWidget {
   final HomeController controller;

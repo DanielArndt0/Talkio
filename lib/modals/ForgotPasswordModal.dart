@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/components/AppFormField.dart';
-import 'package:training_app/components/FutureBlueButton.dart';
-import 'package:training_app/components/TalkyLogo.dart';
-import 'package:training_app/controllers/SignInSocialController.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/components/AppFormField.dart';
+import 'package:talkio/components/FutureBlueButton.dart';
+import 'package:talkio/components/TalkioLogo.dart';
+import 'package:talkio/controllers/SignInSocialController.dart';
 
 class ForgotPasswordModal extends StatelessWidget {
   final SignInSocialController controller;
@@ -25,7 +25,7 @@ class ForgotPasswordModal extends StatelessWidget {
           child: Column(
             children: [
               const Row(),
-              const TalkyLogo(size: 40),
+              const TalkioLogo(size: 40),
               const SizedBox(height: 18),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,

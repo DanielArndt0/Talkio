@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:training_app/controllers/NavigationController.dart';
-import 'package:training_app/controllers/PrivateChatController.dart';
-import 'package:training_app/errors/CloudException.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/MessageModel.dart';
-import 'package:training_app/services/AuthService.dart';
-import 'package:training_app/services/CloudDBService.dart';
+import 'package:talkio/controllers/NavigationController.dart';
+import 'package:talkio/controllers/PrivateChatController.dart';
+import 'package:talkio/errors/CloudException.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/MessageModel.dart';
+import 'package:talkio/services/AuthService.dart';
+import 'package:talkio/services/CloudDBService.dart';
 
 class PrivateChatControllerImpl extends PrivateChatController {
   final TextEditingController _messageController = TextEditingController();

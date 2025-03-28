@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/NamedRoutes.dart';
-import 'package:training_app/middlewares/AutoLogin.dart';
-import 'package:training_app/middlewares/RequireAuth.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/screens/HomeScreen.dart';
-import 'package:training_app/screens/PrivateChatScreen.dart';
-import 'package:training_app/screens/SignInScreen.dart';
-import 'package:training_app/screens/SignInSocialScreen.dart';
-import 'package:training_app/screens/SignUpProfileScreen.dart';
-import 'package:training_app/screens/SignUpScreen.dart';
+import 'package:talkio/NamedRoutes.dart';
+import 'package:talkio/middlewares/AutoLogin.dart';
+import 'package:talkio/middlewares/RequireAuth.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/screens/HomeScreen.dart';
+import 'package:talkio/screens/PrivateChatScreen.dart';
+import 'package:talkio/screens/SignInScreen.dart';
+import 'package:talkio/screens/SignInSocialScreen.dart';
+import 'package:talkio/screens/SignUpProfileScreen.dart';
+import 'package:talkio/screens/SignUpScreen.dart';
 
 class RouteHandler {
   static final routes = {

@@ -1,7 +1,7 @@
-import 'package:training_app/controllers/NavigationController.dart';
-import 'package:training_app/controllers/SignInController.dart';
-import 'package:training_app/errors/AuthException.dart';
-import 'package:training_app/services/AuthService.dart';
+import 'package:talkio/controllers/NavigationController.dart';
+import 'package:talkio/controllers/SignInController.dart';
+import 'package:talkio/errors/AuthException.dart';
+import 'package:talkio/services/AuthService.dart';
 
 class SignInControllerImpl implements SignInController {
   SignInControllerImpl({
@@ -16,7 +16,7 @@ class SignInControllerImpl implements SignInController {
   void loginWithPhoneButton() {}
 
   @override
-  void loginWithTalkyButton() {
+  void loginWithTalkioButton() {
     navigationController.goToSignInSocial();
   }
 

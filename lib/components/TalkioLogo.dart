@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
+import 'package:talkio/app/AppColors.dart';
 
-class TalkyLogo extends StatelessWidget {
+class TalkioLogo extends StatelessWidget {
   final double? size;
-  const TalkyLogo({this.size = 60, super.key});
+  const TalkioLogo({this.size = 60, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Text.rich(
       TextSpan(
-        text: 'Talky',
+        text: 'Talkio',
         style: TextStyle(
           fontSize: size,
           fontWeight: FontWeight.bold,

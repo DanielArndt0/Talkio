@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/services/NavigationService.dart';
+import 'package:talkio/services/NavigationService.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NavigationServiceImpl implements NavigationService {

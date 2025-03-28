@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/MessageModel.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/MessageModel.dart';
 
 abstract class PrivateChatController {
   Stream<QuerySnapshot> loadMessages({required ChatModel chat});

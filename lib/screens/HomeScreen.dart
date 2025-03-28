@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/app/AppColors.dart';
-import 'package:training_app/components/Avatar.dart';
-import 'package:training_app/components/ChatCard.dart';
-import 'package:training_app/controllers/HomeController.dart';
-import 'package:training_app/modals/AddContactModal.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/UserModel.dart';
-import 'package:training_app/utils/DateFormatter.dart';
-import 'package:training_app/validators/FormValidator.dart';
+import 'package:talkio/app/AppColors.dart';
+import 'package:talkio/components/Avatar.dart';
+import 'package:talkio/components/ChatCard.dart';
+import 'package:talkio/controllers/HomeController.dart';
+import 'package:talkio/modals/AddContactModal.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/UserModel.dart';
+import 'package:talkio/utils/DateFormatter.dart';
+import 'package:talkio/validators/FormValidator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

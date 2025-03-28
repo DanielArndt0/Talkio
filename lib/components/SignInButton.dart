@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
+import 'package:talkio/app/AppColors.dart';
 
 class SignInButton extends StatelessWidget {
   final void Function()? onPressed;

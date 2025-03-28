@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:training_app/errors/AuthException.dart';
-import 'package:training_app/errors/EmailAlreadyInUseException.dart';
-import 'package:training_app/errors/InvalidEmailException.dart';
-import 'package:training_app/errors/OperationNotAllowedException.dart';
-import 'package:training_app/errors/UserDisabledException.dart';
-import 'package:training_app/errors/UserLogoutException.dart';
-import 'package:training_app/errors/UserNotFoundException.dart';
-import 'package:training_app/errors/WeakPasswordException.dart';
-import 'package:training_app/errors/WrongPasswordException.dart';
-import 'package:training_app/providers/FbAuthProvider.dart';
-import 'package:training_app/services/AuthService.dart';
+import 'package:talkio/errors/AuthException.dart';
+import 'package:talkio/errors/EmailAlreadyInUseException.dart';
+import 'package:talkio/errors/InvalidEmailException.dart';
+import 'package:talkio/errors/OperationNotAllowedException.dart';
+import 'package:talkio/errors/UserDisabledException.dart';
+import 'package:talkio/errors/UserLogoutException.dart';
+import 'package:talkio/errors/UserNotFoundException.dart';
+import 'package:talkio/errors/WeakPasswordException.dart';
+import 'package:talkio/errors/WrongPasswordException.dart';
+import 'package:talkio/providers/FbAuthProvider.dart';
+import 'package:talkio/services/AuthService.dart';
 
 class AuthServiceImpl implements AuthService {
   final FbAuthProvider authProvider;

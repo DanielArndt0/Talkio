@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/models/UserModel.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/models/UserModel.dart';
 
 abstract class HomeController {
   String get uuid;

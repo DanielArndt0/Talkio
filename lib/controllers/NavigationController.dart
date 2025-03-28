@@ -1,5 +1,5 @@
 
-import 'package:training_app/models/ChatModel.dart';
+import 'package:talkio/models/ChatModel.dart';
 
 abstract class NavigationController {
   Future goToSignInSocial();

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:training_app/models/ChatCardModel.dart';
-import 'package:training_app/models/UserModel.dart';
+import 'package:talkio/models/ChatCardModel.dart';
+import 'package:talkio/models/UserModel.dart';
 
 abstract class CloudDBService {
   Future<void> createUser({

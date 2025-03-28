@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/NamedRoutes.dart';
-import 'package:training_app/components/TalkyLogoAnimated.dart';
-import 'package:training_app/providers/FbAuthProvider.dart';
-import 'package:training_app/services/NavigationService.dart';
+import 'package:talkio/NamedRoutes.dart';
+import 'package:talkio/components/TalkioLogoAnimated.dart';
+import 'package:talkio/providers/FbAuthProvider.dart';
+import 'package:talkio/services/NavigationService.dart';
 
 class RequireAuth extends StatelessWidget {
   final Widget child;
@@ -28,7 +28,7 @@ class RequireAuth extends StatelessWidget {
       });
       return const Scaffold(
         body: Center(
-          child: TalkyLogoAnimated(
+          child: TalkioLogoAnimated(
             duration: Duration(milliseconds: 100),
           ), // Ícone de carregamento
         ),

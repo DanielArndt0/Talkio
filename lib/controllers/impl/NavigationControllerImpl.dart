@@ -1,8 +1,8 @@
 import 'package:page_transition/page_transition.dart';
-import 'package:training_app/NamedRoutes.dart';
-import 'package:training_app/controllers/NavigationController.dart';
-import 'package:training_app/models/ChatModel.dart';
-import 'package:training_app/services/NavigationService.dart';
+import 'package:talkio/NamedRoutes.dart';
+import 'package:talkio/controllers/NavigationController.dart';
+import 'package:talkio/models/ChatModel.dart';
+import 'package:talkio/services/NavigationService.dart';
 
 class NavigationControllerImpl implements NavigationController {
   NavigationControllerImpl({

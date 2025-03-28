@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_avatar/random_avatar.dart';
-import 'package:training_app/app/AppColors.dart';
+import 'package:talkio/app/AppColors.dart';
 
 class ChatCard extends StatelessWidget {
   final String uuid;

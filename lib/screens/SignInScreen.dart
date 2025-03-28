@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/components/SignInButton.dart';
-import 'package:training_app/components/SignInDivider.dart';
-import 'package:training_app/components/TalkyLogo.dart';
-import 'package:training_app/controllers/SignInController.dart';
+import 'package:talkio/components/SignInButton.dart';
+import 'package:talkio/components/SignInDivider.dart';
+import 'package:talkio/components/TalkioLogo.dart';
+import 'package:talkio/controllers/SignInController.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -21,15 +21,15 @@ class SignInScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Row(),
-              const TalkyLogo(),
+              const TalkioLogo(),
               const SizedBox(height: 50),
               Column(
                 // Seção de buttons
                 children: [
                   SignInButton(
                     label: 'Sign in with ',
-                    loginType: const TalkyLogo(size: 16),
-                    onPressed: _controller.loginWithTalkyButton,
+                    loginType: const TalkioLogo(size: 16),
+                    onPressed: _controller.loginWithTalkioButton,
                   ),
                   const SizedBox(height: 30),
                   const SignInDivider(),

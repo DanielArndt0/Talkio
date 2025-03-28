@@ -1,4 +1,4 @@
-import 'package:training_app/errors/AuthException.dart';
+import 'package:talkio/errors/AuthException.dart';
 
 class UserNotFoundException extends AuthException {
   UserNotFoundException({

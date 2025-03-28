@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/app/AppColors.dart';
+import 'package:talkio/app/AppColors.dart';
 
-class TalkyLogoAnimated extends StatefulWidget {
+class TalkioLogoAnimated extends StatefulWidget {
   final double? size;
   final Duration? duration;
   final Duration? delayToRepeat;
   final bool? repeat;
-  const TalkyLogoAnimated({
+  const TalkioLogoAnimated({
     this.size = 60,
     super.key,
     this.duration,
@@ -15,11 +15,11 @@ class TalkyLogoAnimated extends StatefulWidget {
   });
 
   @override
-  State<TalkyLogoAnimated> createState() => _TalkyLogoAnimatedState();
+  State<TalkioLogoAnimated> createState() => _TalkioLogoAnimatedState();
 }
 
-class _TalkyLogoAnimatedState extends State<TalkyLogoAnimated> {
-  String text = 'Talky';
+class _TalkioLogoAnimatedState extends State<TalkioLogoAnimated> {
+  String text = 'Talkio';
   int currentIndex = -1;
 
   @override

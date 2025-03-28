@@ -3,17 +3,8 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:talkio/Env.dart';
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -50,19 +41,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA079-WpQUpBkiKOVbMkk_1NZPSWBVf1Ug',
-    appId: '1:150342103903:android:7f7f9be041c62b67687cea',
-    messagingSenderId: '150342103903',
-    projectId: 'talky2-607b8',
-    storageBucket: 'talky2-607b8.firebasestorage.app',
+    apiKey: Env.androidApiKey,
+    appId: Env.androidAppId,
+    messagingSenderId: Env.messagingSenderId,
+    projectId: Env.projectId,
+    storageBucket: Env.storageBucket,
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCZyibji2WDu84IyDfn6sBltp1tZV9Xmro',
-    appId: '1:150342103903:ios:7f37cd0f74a0b7e9687cea',
-    messagingSenderId: '150342103903',
-    projectId: 'talky2-607b8',
-    storageBucket: 'talky2-607b8.firebasestorage.app',
-    iosBundleId: 'com.example.trainingApp',
+    apiKey: Env.iosApiKey,
+    appId: Env.iosAppId,
+    messagingSenderId: Env.messagingSenderId,
+    projectId: Env.projectId,
+    storageBucket: Env.storageBucket,
+    iosBundleId: Env.iosBundleId,
   );
+
 }

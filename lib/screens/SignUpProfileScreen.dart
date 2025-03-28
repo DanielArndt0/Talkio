@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:training_app/services/AuthService.dart';
+import 'package:talkio/services/AuthService.dart';
 
 class SignUpProfileScreen extends StatelessWidget {
   const SignUpProfileScreen({super.key});
