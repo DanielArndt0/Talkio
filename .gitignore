@@ -49,4 +49,4 @@ app.*.map.json
 /ios/GoogleService-Info.plist
 
 /android/app/upload-keystore.p12
-
+firebase.json
