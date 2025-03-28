@@ -38,12 +38,10 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
 
       - name: Create env.prd.properties
-        run: |
-          mkdir -p env
-          echo "${{ secrets.ENV_PRD_PROPERTIES }}" > env/env.prd.json
+        run: echo "${{ secrets.ENV_PRD_PROPERTIES }}" > env.prd.json
 
       - name: Build APK
-        run: flutter build apk --release --dart-define-from-file=env/env.prd.json
+        run: flutter build apk --release --dart-define-from-file=env.prd.json
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
