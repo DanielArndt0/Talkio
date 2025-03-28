@@ -43,7 +43,7 @@ jobs:
           echo "${{ secrets.ENV_PRD_PROPERTIES }}" > env/env.prd.properties
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --dart-define-from-file=env/env.prd.properties
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
