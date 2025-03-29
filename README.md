@@ -112,7 +112,7 @@ To generate your app’s debug and release certificate fingerprints (SHA-1 and S
 |-------------------|-----------------|
 | **Flutter**       | 3.29.2 stable       |
 | **Dart**          | 3.7.2 stable       |
-| **Java**          | 11        |
+| **Java**          | >= 11        |
 | **Android SDK**   | 35           |
 | **targetSdkVersion** | 35          |
 | **minSdkVersion** | 21              |
