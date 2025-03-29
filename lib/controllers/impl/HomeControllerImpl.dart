@@ -70,8 +70,9 @@ class HomeControllerImpl implements HomeController {
           userID: authService.currentUser.uid,
         );
         navigationController.showSnackbar(
-            message:
-                '${addContactName.text} has been added to your contact list!');
+          message:
+              '${addContactName.text} has been added to your contact list!',
+        );
       }
     } on CloudException catch (error) {
       navigationController.showSnackbar(message: error.message);
@@ -125,12 +126,10 @@ class HomeControllerImpl implements HomeController {
   Future<UserModel> getContact({required String contactId}) async {
     try {
       final contact = await cloudDbService.getContactById(
-          userId: authService.currentUser.uid, contactId: contactId);
-      return UserModel(
-        id: contactId,
-        name: contact.name,
-        email: contact.name,
+        userId: authService.currentUser.uid,
+        contactId: contactId,
       );
+      return UserModel(id: contactId, name: contact.name, email: contact.name);
     } catch (error) {
       final contactUser = await cloudDbService.getUserById(userId: contactId);
       return UserModel(
@@ -158,7 +157,23 @@ class HomeControllerImpl implements HomeController {
   }
 
   @override
-  Stream<List<UserModel>> loadContactsByChats(List<ChatCardModel> chats, String currentUserId) {
+  Stream<List<UserModel>> loadContactsByChats(
+    List<ChatCardModel> chats,
+    String currentUserId,
+  ) {
     return cloudDbService.loadContactsByChats(chats, currentUserId);
+  }
+
+  @override
+  Future<void> onChatCardLongPress({required ChatModel chatData}) async {
+    try {
+      await cloudDbService.deleteChat(chatId: chatData.chatData.id);
+    } on CloudException catch (error) {
+      navigationController.showSnackbar(message: error.message);
+    } catch (error) {
+      navigationController.showSnackbar(message: error.toString());
+    } finally {
+      navigationController.pop();
+    }
   }
 }

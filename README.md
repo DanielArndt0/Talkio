@@ -23,28 +23,12 @@
   <img src="images/Screenshots/screenshot(6).png" width="150" />
 </p>
 
-## 📦 Installation
-```bash
-git clone https://github.com/your-username/talkio.git
-cd talkio
-flutter pub get
-flutter run --dart-define-from-file=env/env.prd.json
-```
-⚠️ Make sure to include your Firebase **google-services.json** in **android/app/**
-and your environment config in **env/env.prd.json.**
-
-## 🧪 Build
-```bash
-flutter build apk --release --dart-define-from-file=env/env.prd.json
-```
-
 ## 🛠 Technologies
 
 - [Flutter](https://flutter.dev/)
-- [Firebase](https://firebase.google.com/) (Auth, Firestore)
-- [Provider](https://pub.dev/packages/provider) (State Management)
-- [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
 - [Firebase CLI](https://firebase.google.com/docs/cli)
+- [Firebase](https://firebase.google.com/) (Auth, Firestore)
+- [Provider](https://pub.dev/packages/provider)
 
 ## 📂 Project Structure
 ```bash
@@ -63,7 +47,17 @@ lib/
 └── validators/      # Input validators and schemas
 ```
 
-## ENV Structure
+## 📦 Installation
+```bash
+git clone https://github.com/DanielArndt0/Talkio.git
+cd talkio
+flutter pub get
+flutter run --dart-define-from-file=env/env.local.json
+```
+⚠️ Make sure to include your Firebase **google-services.json** in **android/app/**
+and your environment config in **env/env.local.json.**
+
+## env.local.json Structure
 ```json
 {
   "androidApiKey": "androidApiKey",
@@ -75,6 +69,11 @@ lib/
   "storageBucket": "storageBucket",
   "messagingSenderId": "messagingSenderId"
 }
+```
+
+## 🧪 Build
+```bash
+flutter build apk --release --dart-define-from-file=env/env.local.json
 ```
 ---
 
@@ -105,6 +104,22 @@ To generate your app’s debug and release certificate fingerprints (SHA-1 and S
 ./gradlew signingReport
 ```
 
+---
+
+## 🧰 Versions
+
+| Tool              | Version         |
+|-------------------|-----------------|
+| **Flutter**       | 3.29.2 stable       |
+| **Dart**          | 3.7.2 stable       |
+| **Java**          | >= 11        |
+| **Android SDK**   | 35           |
+| **targetSdkVersion** | 35          |
+| **minSdkVersion** | 21              |
+| **Android NDK**   | 27.0.12077973           |
+| **Gradle**        | 8.10.2          |
+| **Kotlin**        | 1.9.24           |
+| **Groovy**        | 3.0.22           |
 ---
 
 ## ✨ Author

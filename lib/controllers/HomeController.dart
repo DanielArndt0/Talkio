@@ -16,6 +16,7 @@ abstract class HomeController {
   void searchBarOnSubmitted(String text);
   Future<void> removeContact({required String contactEmail});
   Future<void> onChatCardTap({required ChatModel chatData});
+  Future<void> onChatCardLongPress({required ChatModel chatData});
   void cancelRemoveContact();
   Future<void> onContactCardTap({required UserModel contact});
   Future<void> sendAddContactForm();
