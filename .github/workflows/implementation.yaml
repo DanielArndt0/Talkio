@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,12 +37,8 @@ jobs:
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
 
-      - name: Create env.prd.properties
-        run: echo "${{ secrets.ENV_PRD_PROPERTIES }}" > env.json
-
       - name: Decode env.json
-        run: |
-          echo "${{ secrets.ENV_PRD_JSON_BASE64 }}" | base64 -d > env.json
+        run: echo "${{ secrets.ENV_PRD_JSON_BASE64 }}" | base64 -d > env.json
 
       - name: Build APK
         run: flutter build apk --release --dart-define-from-file=env.json
@@ -61,3 +57,39 @@ jobs:
         with:
           name: talkio-aab
           path: build/app/outputs/bundle/release/app-release.aab
+
+  build-ios:
+    runs-on: macos-latest
+    needs: build-android  # Espera o job Android terminar
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.2'
+          channel: 'stable'
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          cd ios
+          pod install
+          cd ..
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Decode env.json
+        run: echo "${{ secrets.ENV_PRD_JSON_BASE64 }}" | base64 -d > env.json
+
+      - name: Build iOS (no code signing)
+        run: flutter build ios --release --no-codesign --dart-define-from-file=env.json
+
+      - name: Upload iOS build (Runner.app)
+        uses: actions/upload-artifact@v4
+        with:
+          name: talkio-ios
+          path: build/ios/iphoneos/Runner.app
