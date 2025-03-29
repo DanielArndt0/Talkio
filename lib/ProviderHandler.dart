@@ -28,92 +28,100 @@ MultiProvider providerHandler = MultiProvider(
     Provider<NavigationService>(
       create: (context) => NavigationServiceImpl.instance,
     ),
-    Provider<CloudDBService>(
-      create: (context) => CloudDBServiceImpl.instance,
-    ),
+    Provider<CloudDBService>(create: (context) => CloudDBServiceImpl.instance),
     ProxyProvider<FbAuthProvider, AuthService>(
-      update: (
-        context,
-        authProvider,
-        previous,
-      ) =>
-          AuthServiceImpl(
-        authProvider: authProvider,
-      ),
+      update:
+          (context, authProvider, previous) =>
+              AuthServiceImpl(authProvider: authProvider),
     ),
     ProxyProvider<NavigationService, NavigationController>(
-      update: (
-        context,
-        navigationService,
-        previous,
-      ) =>
-          NavigationControllerImpl(
-        navigationService: navigationService,
-      ),
+      update:
+          (context, navigationService, previous) =>
+              NavigationControllerImpl(navigationService: navigationService),
     ),
     ProxyProvider2<AuthService, NavigationController, SignInSocialController>(
-      update: (
-        context,
-        authService,
-        navigationController,
-        previous,
-      ) =>
-          SignInSocialControllerImpl(
-        authService: authService,
-        navigationController: navigationController,
-      ),
+      update:
+          (context, authService, navigationController, previous) =>
+              SignInSocialControllerImpl(
+                authService: authService,
+                navigationController: navigationController,
+              ),
     ),
-    ProxyProvider2<AuthService, NavigationController, SignInController>(
-      update: (context, authService, navigationController, previous) =>
-          SignInControllerImpl(
-        authService: authService,
-        navigationController: navigationController,
-      ),
+    ProxyProvider3<
+      AuthService,
+      CloudDBService,
+      NavigationController,
+      SignInController
+    >(
+      update:
+          (
+            context,
+            authService,
+            cloudDbService,
+            navigationController,
+            previous,
+          ) => SignInControllerImpl(
+            authService: authService,
+            cloudDbService: cloudDbService,
+            navigationController: navigationController,
+          ),
     ),
-    ProxyProvider3<AuthService, CloudDBService, NavigationController,
-        HomeController>(
-      update: (
-        context,
-        authService,
-        cloudDbService,
-        navigationController,
-        previous,
-      ) =>
-          HomeControllerImpl(
-        authService: authService,
-        cloudDbService: cloudDbService,
-        navigationController: navigationController,
-      ),
+    ProxyProvider3<
+      AuthService,
+      CloudDBService,
+      NavigationController,
+      HomeController
+    >(
+      update:
+          (
+            context,
+            authService,
+            cloudDbService,
+            navigationController,
+            previous,
+          ) => HomeControllerImpl(
+            authService: authService,
+            cloudDbService: cloudDbService,
+            navigationController: navigationController,
+          ),
     ),
-    ProxyProvider3<AuthService, CloudDBService, NavigationController,
-        SignUpController>(
-      update: (
-        context,
-        authService,
-        cloudDbService,
-        navigationController,
-        previous,
-      ) =>
-          SignUpControllerImpl(
-        authService: authService,
-        cloudDbService: cloudDbService,
-        navigationController: navigationController,
-      ),
+    ProxyProvider3<
+      AuthService,
+      CloudDBService,
+      NavigationController,
+      SignUpController
+    >(
+      update:
+          (
+            context,
+            authService,
+            cloudDbService,
+            navigationController,
+            previous,
+          ) => SignUpControllerImpl(
+            authService: authService,
+            cloudDbService: cloudDbService,
+            navigationController: navigationController,
+          ),
     ),
-    ProxyProvider3<AuthService, CloudDBService, NavigationController,
-        PrivateChatController>(
-      update: (
-        context,
-        authService,
-        cloudDbService,
-        navigationController,
-        previous,
-      ) =>
-          PrivateChatControllerImpl(
-        authService: authService,
-        cloudDbService: cloudDbService,
-        navigationController: navigationController,
-      ),
+    ProxyProvider3<
+      AuthService,
+      CloudDBService,
+      NavigationController,
+      PrivateChatController
+    >(
+      update:
+          (
+            context,
+            authService,
+            cloudDbService,
+            navigationController,
+            previous,
+          ) => PrivateChatControllerImpl(
+            authService: authService,
+            cloudDbService: cloudDbService,
+            navigationController: navigationController,
+          ),
     ),
   ],
   child: const MyApp(),
