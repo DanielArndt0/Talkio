@@ -6,6 +6,7 @@ import 'package:talkio/components/Avatar.dart';
 import 'package:talkio/components/ChatCard.dart';
 import 'package:talkio/controllers/HomeController.dart';
 import 'package:talkio/modals/AddContactModal.dart';
+import 'package:talkio/modals/DeleteChatModal.dart';
 import 'package:talkio/models/ChatCardModel.dart';
 import 'package:talkio/models/ChatModel.dart';
 import 'package:talkio/models/UserModel.dart';
@@ -26,13 +27,11 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
   @override
   void initState() {
     _controller = context.read<HomeController>();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        setState(() {
-          _loadChats = _controller.loadChats();
-        });
-      },
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _loadChats = _controller.loadChats();
+      });
+    });
     super.initState();
   }
 
@@ -45,11 +44,9 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
               onTap: _controller.quitPressed,
-              child: const Icon(
-                Icons.exit_to_app_rounded,
-              ),
+              child: const Icon(Icons.exit_to_app_rounded),
             ),
-          )
+          ),
         ],
         leading: Padding(
           padding: const EdgeInsets.only(left: 8),
@@ -71,13 +68,12 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
                 onSubmitted: _controller.searchBarOnSubmitted,
                 leading: const Icon(Icons.search, color: AppColors.hintColor),
                 hintStyle: const WidgetStatePropertyAll(
-                  TextStyle(
-                    color: AppColors.hintColor,
-                  ),
+                  TextStyle(color: AppColors.hintColor),
                 ),
                 shape: const WidgetStatePropertyAll(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
                 ),
                 hintText: 'Search by last message',
                 backgroundColor: const WidgetStatePropertyAll(
@@ -94,9 +90,10 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
                   return const CircularProgressIndicator();
                 }
 
-                final chats = snapshot.data!.docs
-                    .map((doc) => ChatCardModel.fromDoc(doc: doc))
-                    .toList();
+                final chats =
+                    snapshot.data!.docs
+                        .map((doc) => ChatCardModel.fromDoc(doc: doc))
+                        .toList();
 
                 if (chats.isEmpty) {
                   return const Text(
@@ -111,60 +108,76 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
                 return _loadChats == null
                     ? const SizedBox.shrink()
                     : StreamBuilder<List<UserModel>>(
-                        stream: _controller.loadContactsByChats(
-                          chats,
-                          _controller.uuid,
-                        ),
-                        builder: (context, contactSnapshot) {
-                          if (!contactSnapshot.hasData) {
-                            return const CircularProgressIndicator();
-                          }
-                          final contacts = contactSnapshot.data!;
-                          final filteredChats = chats.where(
-                            (chat) {
+                      stream: _controller.loadContactsByChats(
+                        chats,
+                        _controller.uuid,
+                      ),
+                      builder: (context, contactSnapshot) {
+                        if (!contactSnapshot.hasData) {
+                          return const CircularProgressIndicator();
+                        }
+                        final contacts = contactSnapshot.data!;
+                        final filteredChats =
+                            chats.where((chat) {
                               return chat.lastMessage.toLowerCase().contains(
-                                  _controller.searchBarController.text
-                                      .toLowerCase());
-                            },
-                          ).toList();
+                                _controller.searchBarController.text
+                                    .toLowerCase(),
+                              );
+                            }).toList();
 
-                          return Expanded(
-                            child: ListView.builder(
-                              itemCount: filteredChats.length,
-                              itemBuilder: (context, index) {
-                                final chat = filteredChats[index];
-                                final contactId =
-                                    chat.getContactId(_controller.uuid);
+                        return Expanded(
+                          child: ListView.builder(
+                            itemCount: filteredChats.length,
+                            itemBuilder: (context, index) {
+                              final chat = filteredChats[index];
+                              final contactId = chat.getContactId(
+                                _controller.uuid,
+                              );
 
-                                final contact = contacts.firstWhere(
-                                  (c) => c.id == contactId,
-                                  orElse: () => UserModel.empty(),
-                                );
+                              final contact = contacts.firstWhere(
+                                (c) => c.id == contactId,
+                                orElse: () => UserModel.empty(),
+                              );
 
-                                final lastMessage =
-                                    chat.usersTyping.contains(contact.id)
-                                        ? 'Typing...'
-                                        : chat.lastMessage;
+                              final lastMessage =
+                                  chat.usersTyping.contains(contact.id)
+                                      ? 'Typing...'
+                                      : chat.lastMessage;
 
-                                return ChatCard(
-                                  onTap: () => _controller.onChatCardTap(
-                                    chatData: ChatModel(
-                                      chatData: chat,
-                                      contact: contact,
+                              return ChatCard(
+                                onLongPress: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return DeleteChatModal(
+                                        controller: _controller,
+                                        chat: ChatModel(
+                                          chatData: chat,
+                                          contact: contact,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                onTap:
+                                    () => _controller.onChatCardTap(
+                                      chatData: ChatModel(
+                                        chatData: chat,
+                                        contact: contact,
+                                      ),
                                     ),
-                                  ),
-                                  uuid: contact.id,
-                                  name: contact.name,
-                                  date: DateFormatter.formatTimestamp(
-                                    chat.timestamp?.toUtc(),
-                                  ),
-                                  lastMessage: lastMessage,
-                                );
-                              },
-                            ),
-                          );
-                        },
-                      );
+                                uuid: contact.id,
+                                name: contact.name,
+                                date: DateFormatter.formatTimestamp(
+                                  chat.timestamp?.toUtc(),
+                                ),
+                                lastMessage: lastMessage,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
               },
             ),
           ],
@@ -174,14 +187,16 @@ class _HomeScreenState extends State<HomeScreen> with FormValidator {
         backgroundColor: AppColors.primaryMaterialColor,
         shape: const CircleBorder(),
         child: const Icon(Icons.add_comment_rounded, color: Colors.white),
-        onPressed: () => showModalBottomSheet(
-          isScrollControlled: true,
-          context: context,
-          builder: (context) => AddContactModal(
-            controller: _controller,
-            validator: isNotEmpty,
-          ),
-        ),
+        onPressed:
+            () => showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder:
+                  (context) => AddContactModal(
+                    controller: _controller,
+                    validator: isNotEmpty,
+                  ),
+            ),
       ),
     );
   }
