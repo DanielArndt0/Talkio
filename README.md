@@ -76,6 +76,36 @@ lib/
   "messagingSenderId": "messagingSenderId"
 }
 ```
+---
+
+## 🔐 Generating Keystore and Production Certificates
+
+### 📦 Generate a Keystore
+Use the command below to generate your production keystore file (`upload-keystore.p12`):
+
+```bash
+keytool -genkey -v -keystore upload-keystore.p12 \
+  -storetype PKCS12 -keyalg RSA -keysize 2048 -validity 10000 \
+  -alias upload
+```
+You will be prompted to enter your name, organization, and keystore password.
+
+🔑 Get SHA1 / SHA256 fingerprints
+Run this to retrieve your certificate fingerprints (required by Firebase):
+
+```bash
+keytool -list -v -keystore upload-keystore.p12 -alias upload -storetype PKCS12
+```
+
+## 🔐 Generating SHA-1 and SHA-256 for Debug
+To generate your app’s debug and release certificate fingerprints (SHA-1 and SHA-256), use the following command from the android/ directory:
+
+### 🔧 For Debug (Default keystore)
+```bash
+./gradlew signingReport
+```
+
+---
 
 ## ✨ Author
 
