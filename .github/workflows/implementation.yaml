@@ -60,7 +60,7 @@ jobs:
 
   build-ios:
     runs-on: macos-latest
-    needs: build-android  # Espera o job Android terminar
+    needs: build-android
 
     steps:
       - name: Checkout code
@@ -71,13 +71,6 @@ jobs:
         with:
           flutter-version: '3.29.2'
           channel: 'stable'
-
-      - name: Install CocoaPods
-        run: |
-          sudo gem install cocoapods
-          cd ios
-          pod install
-          cd ..
 
       - name: Install dependencies
         run: flutter pub get
