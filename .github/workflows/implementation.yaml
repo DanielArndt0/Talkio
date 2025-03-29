@@ -52,3 +52,12 @@ jobs:
         with:
           name: talkio-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Build AAB for Play Store
+        run: flutter build appbundle --release --dart-define-from-file=env.json
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: talkio-aab
+          path: build/app/outputs/bundle/release/app-release.aab
