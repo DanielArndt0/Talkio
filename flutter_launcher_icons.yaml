@@ -2,5 +2,5 @@
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/Talkio_760_bg_white.png"
+  image_path: "assets/images/Talkio_icon.png"
   min_sdk_android: 21 

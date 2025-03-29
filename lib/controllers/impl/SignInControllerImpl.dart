@@ -16,9 +16,6 @@ class SignInControllerImpl implements SignInController {
   late final CloudDBService cloudDbService;
 
   @override
-  void loginWithPhoneButton() {}
-
-  @override
   void loginWithTalkioButton() {
     navigationController.goToSignInSocial();
   }
@@ -43,11 +40,27 @@ class SignInControllerImpl implements SignInController {
   @override
   Future<void> loginWithFacebookButton() async {
     try {
-      await authService.loginWithFacebook();
+      //await authService.loginWithFacebook();
+      throw UnimplementedError();
     } on AuthException catch (error) {
       navigationController.showSnackbar(message: error.message);
+    } on UnimplementedError {
+      navigationController.showSnackbar(message: "Unimplemented");
     } catch (error) {
-      navigationController.showSnackbar(message: 'Service unavailable');
+      navigationController.showSnackbar(message: error.toString());
+    }
+  }
+
+  @override
+  void loginWithPhoneButton() {
+    try {
+      throw UnimplementedError();
+    } on AuthException catch (error) {
+      navigationController.showSnackbar(message: error.message);
+    } on UnimplementedError {
+      navigationController.showSnackbar(message: "Unimplemented");
+    } catch (error) {
+      navigationController.showSnackbar(message: error.toString());
     }
   }
 

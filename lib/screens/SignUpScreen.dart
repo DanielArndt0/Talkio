@@ -72,28 +72,36 @@ class _SignUpScreenState extends State<SignUpScreen> with FormValidator {
                           validator: isNotEmpty,
                         ),
                         const SizedBox(height: 18),
-                        AppFormField(
-                          labelText: 'Enter your password',
-                          hintText: '••••••••',
-                          controller: _controller.password,
-                          keyboardType: TextInputType.visiblePassword,
-                          validator: isNotEmpty,
-                          obscureText: true,
-                        ),
-                        const SizedBox(height: 18),
-                        AppFormField(
-                          labelText: 'Confirm your password',
-                          hintText: '••••••••',
-                          controller: _controller.confirmedPassword,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          validator: (string) => combine(
-                            [
-                              () => isNotEmpty(string),
-                              () => confirmPassword(
-                                  string, _controller.password.text)
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: AppFormField(
+                                labelText: 'Enter your password',
+                                hintText: '••••••••',
+                                controller: _controller.password,
+                                keyboardType: TextInputType.visiblePassword,
+                                validator: isNotEmpty,
+                                obscureText: true,
+                              ),
+                            ),
+                            const SizedBox(width: 18),
+                            Expanded(
+                              child: AppFormField(
+                                labelText: 'Confirm your password',
+                                hintText: '••••••••',
+                                controller: _controller.confirmedPassword,
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                validator: (string) => combine(
+                                  [
+                                    () => isNotEmpty(string),
+                                    () => confirmPassword(
+                                        string, _controller.password.text)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
