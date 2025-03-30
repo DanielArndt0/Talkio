@@ -399,8 +399,8 @@ class CloudDBServiceImpl extends CloudDBService {
     required String userId,
     required String token,
   }) async {
-    await _firestore.collection('users').doc(userId).update({
+    await _firestore.collection('users').doc(userId).set({
       'tokensFCM': FieldValue.arrayUnion([token]),
-    });
+    }, SetOptions(merge: true));
   }
 }
