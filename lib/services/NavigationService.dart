@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 abstract class NavigationService {
+  
+
   Future navigateTo<T>({
     required String routeName,
     T? object,

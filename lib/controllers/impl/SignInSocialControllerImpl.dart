@@ -5,14 +5,20 @@ import 'package:talkio/controllers/NavigationController.dart';
 import 'package:talkio/controllers/SignInSocialController.dart';
 import 'package:talkio/errors/AuthException.dart';
 import 'package:talkio/services/AuthService.dart';
+import 'package:talkio/services/CloudDBService.dart';
+import 'package:talkio/services/MessagingService.dart';
 
 class SignInSocialControllerImpl implements SignInSocialController {
   SignInSocialControllerImpl({
     required this.authService,
     required this.navigationController,
+    required this.cloudDbService,
+    required this.messagingService,
   });
 
   late final AuthService authService;
+  late final CloudDBService cloudDbService;
+  late final MessagingService messagingService;
   late final NavigationController navigationController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _forgotPasswordFormKey = GlobalKey<FormState>();
@@ -53,10 +59,13 @@ class SignInSocialControllerImpl implements SignInSocialController {
   Future<void> signInButtonPressed() async {
     if (formKey.currentState!.validate()) {
       try {
-        await authService.login(
-          email: email.text,
-          password: password.text,
+        await authService.login(email: email.text, password: password.text);
+
+        await cloudDbService.updateTokenFCM(
+          userId: authService.currentUser.uid,
+          token: messagingService.token,
         );
+
         navigationController.goToHome();
       } on AuthException catch (error) {
         navigationController.showSnackbar(message: error.message);

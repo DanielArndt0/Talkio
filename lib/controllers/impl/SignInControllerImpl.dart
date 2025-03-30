@@ -3,16 +3,19 @@ import 'package:talkio/controllers/SignInController.dart';
 import 'package:talkio/errors/AuthException.dart';
 import 'package:talkio/services/AuthService.dart';
 import 'package:talkio/services/CloudDBService.dart';
+import 'package:talkio/services/MessagingService.dart';
 
 class SignInControllerImpl implements SignInController {
   SignInControllerImpl({
     required this.navigationController,
     required this.authService,
     required this.cloudDbService,
+    required this.messagingService,
   });
 
   late final NavigationController navigationController;
   late final AuthService authService;
+  late final MessagingService messagingService;
   late final CloudDBService cloudDbService;
 
   @override
@@ -28,6 +31,7 @@ class SignInControllerImpl implements SignInController {
         name: authService.currentUser.displayName!,
         userID: authService.currentUser.uid,
         email: authService.currentUser.email!,
+        tokenFCM: messagingService.token,
       );
       navigationController.goToHome();
     } on AuthException catch (error) {

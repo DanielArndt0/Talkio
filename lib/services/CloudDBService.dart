@@ -7,6 +7,7 @@ abstract class CloudDBService {
     required String name,
     required String userID,
     required String email,
+    required String tokenFCM,
   });
 
   Future<void> addContact({
@@ -36,20 +37,18 @@ abstract class CloudDBService {
 
   Stream<QuerySnapshot> getContacts({required String userID});
 
-  Future<void> createChat({
-    required String userId,
-    required String contactId,
-  });
+  Future<void> createChat({required String userId, required String contactId});
 
   Future<String?> getChatIdByUsersId({
     required String userId,
     required String contactId,
   });
 
-  Future<void> sendMessage(
-      {required String userId,
-      required String contactId,
-      required String text});
+  Future<void> sendMessage({
+    required String userId,
+    required String contactId,
+    required String text,
+  });
 
   Stream<QuerySnapshot> getMessages({required String chatId});
 
@@ -87,4 +86,6 @@ abstract class CloudDBService {
   });
 
   Stream<DocumentSnapshot<Object?>> getChatStream({required String chatId});
+
+  Future<void> updateTokenFCM({required String userId, required String token});
 }
