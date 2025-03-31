@@ -1,7 +1,7 @@
 
 # 📱 Talkio
 
-**Talkio** is a real-time messaging app built with Flutter and Firebase. It supports private chats between users, auto-generated avatars, typing indicators, and a modern user experience.
+**Talkio** is a real-time messaging app built with Flutter and Firebase. It enables private one-on-one chats, features auto-generated avatars, real-time typing indicators, push notifications, and provides a clean, modern user experience.
 
 ## 🚀 Features
 
@@ -28,7 +28,7 @@
 
 - [Flutter](https://flutter.dev/)
 - [Firebase CLI](https://firebase.google.com/docs/cli)
-- [Firebase](https://firebase.google.com/) (Auth, Firestore)
+- [Firebase](https://firebase.google.com/) (Auth, Firestore, FCM, Functions)
 - [Provider](https://pub.dev/packages/provider)
 
 ## 📂 Project Structure
