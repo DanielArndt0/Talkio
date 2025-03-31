@@ -6,7 +6,8 @@ class NavigationServiceImpl implements NavigationService {
   NavigationServiceImpl._();
   static final NavigationServiceImpl instance = NavigationServiceImpl._();
 
-  late final GlobalKey<NavigatorState> navigator;
+  @override
+  late GlobalKey<NavigatorState> navigator;
 
   @override
   Future navigateTo<T>({
@@ -15,33 +16,29 @@ class NavigationServiceImpl implements NavigationService {
     PageTransitionType? type,
   }) async {
     if (type == null) {
-      await navigator.currentState?.pushNamed(
-        routeName,
-        arguments: object,
-      );
+      await navigator.currentState?.pushNamed(routeName, arguments: object);
     } else {
       await navigator.currentState?.context.pushNamedTransition(
         routeName: routeName,
         type: type,
         arguments: object,
-        duration: const Duration(milliseconds: 300)
+        duration: const Duration(milliseconds: 300),
       );
     }
   }
 
   @override
-  Future navigatePopTo<T>({
-    required String routeName,
-    T? object,
-  }) async {
+  Future navigatePopTo<T>({required String routeName, T? object}) async {
     await navigator.currentState?.popAndPushNamed(routeName, arguments: object);
   }
 
   @override
   Future navigatePopAllTo<T>({required String routeName, T? object}) async {
     await navigator.currentState?.pushNamedAndRemoveUntil(
-        routeName, (route) => false,
-        arguments: object);
+      routeName,
+      (route) => false,
+      arguments: object,
+    );
   }
 
   @override
@@ -51,12 +48,9 @@ class NavigationServiceImpl implements NavigationService {
 
   @override
   void showSnackbar({required String message}) {
-    ScaffoldMessenger.of(navigator.currentContext!).showSnackBar(
-      SnackBar(
-        
-        content: Text(message),
-      ),
-    );
+    ScaffoldMessenger.of(
+      navigator.currentContext!,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override

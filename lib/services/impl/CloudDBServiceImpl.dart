@@ -18,11 +18,13 @@ class CloudDBServiceImpl extends CloudDBService {
     required String name,
     required String userID,
     required String email,
+    required String tokenFCM,
   }) async {
     try {
       await _firestore.collection('users').doc(userID).set({
         'name': name,
         'email': email,
+        'tokensFCM': FieldValue.arrayUnion([tokenFCM]),
       });
     } on FirebaseException catch (error) {
       throw CloudException(
@@ -46,10 +48,7 @@ class CloudDBServiceImpl extends CloudDBService {
           .collection('contacts')
           .doc(contactId);
 
-      contactsRef.set({
-        'name': name,
-        'email': email,
-      });
+      contactsRef.set({'name': name, 'email': email});
     } on FirebaseException catch (error) {
       throw CloudException(
         message: error.message ?? 'Error to add contact.',
@@ -81,10 +80,7 @@ class CloudDBServiceImpl extends CloudDBService {
             .collection('contacts')
             .doc(contactId);
 
-        contactsRef.set({
-          'name': name,
-          'email': email,
-        });
+        contactsRef.set({'name': name, 'email': email});
       } on FirebaseException catch (error) {
         throw CloudException(
           message: error.message ?? 'Error to add contact.',
@@ -99,11 +95,12 @@ class CloudDBServiceImpl extends CloudDBService {
   @override
   Future<String?> getUserIdByEmail(String email) async {
     try {
-      final querySnapshot = await _firestore
-          .collection('users')
-          .where('email', isEqualTo: email)
-          .limit(1)
-          .get();
+      final querySnapshot =
+          await _firestore
+              .collection('users')
+              .where('email', isEqualTo: email)
+              .limit(1)
+              .get();
 
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs.first.id;
@@ -120,13 +117,14 @@ class CloudDBServiceImpl extends CloudDBService {
     required String contactEmail,
   }) async {
     try {
-      final query = await _firestore
-          .collection('users')
-          .doc(userId)
-          .collection('contacts')
-          .where('email', isEqualTo: contactEmail)
-          .limit(1)
-          .get();
+      final query =
+          await _firestore
+              .collection('users')
+              .doc(userId)
+              .collection('contacts')
+              .where('email', isEqualTo: contactEmail)
+              .limit(1)
+              .get();
 
       return query.docs.isNotEmpty;
     } catch (error) {
@@ -181,10 +179,11 @@ class CloudDBServiceImpl extends CloudDBService {
     required String contactId,
   }) async {
     try {
-      final userChats = await _firestore
-          .collection('chats')
-          .where('users', arrayContains: userId)
-          .get();
+      final userChats =
+          await _firestore
+              .collection('chats')
+              .where('users', arrayContains: userId)
+              .get();
 
       final alreadyExists = userChats.docs.any((doc) {
         final users = List<String>.from(doc['users']);
@@ -214,10 +213,11 @@ class CloudDBServiceImpl extends CloudDBService {
     required String userId,
     required String contactId,
   }) async {
-    final userChats = await _firestore
-        .collection('chats')
-        .where('users', arrayContains: userId)
-        .get();
+    final userChats =
+        await _firestore
+            .collection('chats')
+            .where('users', arrayContains: userId)
+            .get();
 
     for (final doc in userChats.docs) {
       final users = List<String>.from(doc['users']);
@@ -239,8 +239,10 @@ class CloudDBServiceImpl extends CloudDBService {
     required String contactId,
     required String text,
   }) async {
-    final chatId =
-        await getChatIdByUsersId(userId: userId, contactId: contactId);
+    final chatId = await getChatIdByUsersId(
+      userId: userId,
+      contactId: contactId,
+    );
     if (chatId != null) {
       final messagesRef = await _firestore
           .collection('chats')
@@ -285,14 +287,17 @@ class CloudDBServiceImpl extends CloudDBService {
   }
 
   @override
-  Future<UserModel> getContactById(
-      {required String userId, required String contactId}) async {
-    final doc = await _firestore
-        .collection('users')
-        .doc(userId)
-        .collection('contacts')
-        .doc(contactId)
-        .get();
+  Future<UserModel> getContactById({
+    required String userId,
+    required String contactId,
+  }) async {
+    final doc =
+        await _firestore
+            .collection('users')
+            .doc(userId)
+            .collection('contacts')
+            .doc(contactId)
+            .get();
     return UserModel.fromDoc(doc: doc);
   }
 
@@ -330,8 +335,10 @@ class CloudDBServiceImpl extends CloudDBService {
   }
 
   @override
-  Future<void> deleteUserFromChat(
-      {required String chatId, required String userId}) async {
+  Future<void> deleteUserFromChat({
+    required String chatId,
+    required String userId,
+  }) async {
     try {
       await FirebaseFirestore.instance.collection('chats').doc(chatId).update({
         'users': FieldValue.arrayRemove([userId]),
@@ -353,9 +360,10 @@ class CloudDBServiceImpl extends CloudDBService {
     final chatRef = _firestore.collection('chats').doc(chatId);
 
     await chatRef.update({
-      'usersTyping': isTyping
-          ? FieldValue.arrayUnion([userId])
-          : FieldValue.arrayRemove([userId]),
+      'usersTyping':
+          isTyping
+              ? FieldValue.arrayUnion([userId])
+              : FieldValue.arrayRemove([userId]),
     });
   }
 
@@ -366,7 +374,9 @@ class CloudDBServiceImpl extends CloudDBService {
 
   @override
   Stream<List<UserModel>> loadContactsByChats(
-      List<ChatCardModel> chats, String currentUserId) {
+    List<ChatCardModel> chats,
+    String currentUserId,
+  ) {
     final contactIds =
         chats.map((chat) => chat.getContactId(currentUserId)).toSet().toList();
 
@@ -378,7 +388,19 @@ class CloudDBServiceImpl extends CloudDBService {
         .collection('users')
         .where(FieldPath.documentId, whereIn: contactIds)
         .snapshots()
-        .map((snapshot) =>
-            snapshot.docs.map((doc) => UserModel.fromDoc(doc: doc)).toList());
+        .map(
+          (snapshot) =>
+              snapshot.docs.map((doc) => UserModel.fromDoc(doc: doc)).toList(),
+        );
+  }
+
+  @override
+  Future<void> updateTokenFCM({
+    required String userId,
+    required String token,
+  }) async {
+    await _firestore.collection('users').doc(userId).set({
+      'tokensFCM': FieldValue.arrayUnion([token]),
+    }, SetOptions(merge: true));
   }
 }

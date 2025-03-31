@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "talkio-dev",
+    "prod": "talkio-73753"
+  }
+}

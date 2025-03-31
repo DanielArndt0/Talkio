@@ -6,14 +6,17 @@ import 'package:talkio/controllers/SignUpController.dart';
 import 'package:talkio/errors/AuthException.dart';
 import 'package:talkio/services/AuthService.dart';
 import 'package:talkio/services/CloudDBService.dart';
+import 'package:talkio/services/MessagingService.dart';
 
 class SignUpControllerImpl implements SignUpController {
   SignUpControllerImpl({
     required this.authService,
     required this.cloudDbService,
     required this.navigationController,
+    required this.messagingService,
   });
   final AuthService authService;
+  final MessagingService messagingService;
   final CloudDBService cloudDbService;
   final NavigationController navigationController;
   final TextEditingController _email = TextEditingController();
@@ -55,6 +58,7 @@ class SignUpControllerImpl implements SignUpController {
           name: name.text,
           email: email.text,
           userID: authService.currentUser.uid,
+          tokenFCM: messagingService.token,
         );
 
         navigationController.goToHome();

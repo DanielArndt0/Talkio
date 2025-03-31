@@ -1,7 +1,7 @@
 name: talkio
 description: "Talkio is a real-time chat app built with Flutter and Firebase. It features private messaging, typing indicators, auto-scroll, contact search, and auto-generated avatars fixed per user. Fast, intuitive, and modern – Talkio delivers a smooth chatting experience with elegant UI."
 publish_to: 'none' 
-version: 1.1.0+4
+version: 1.1.1+5
 
 environment:
   sdk: ^3.7.2
@@ -13,6 +13,7 @@ dependencies:
   # Firebase
   firebase_core: ^2.27.0
   firebase_auth: ^4.17.8
+  firebase_messaging: ^14.9.4
   cloud_firestore: ^4.15.8
   
   # Animations
@@ -25,6 +26,7 @@ dependencies:
   # Native
   flutter_native_splash: ^2.4.5
   flutter_launcher_icons: ^0.13.1
+  flutter_local_notifications: ^19.0.0
   
   # Auth
   google_sign_in: ^6.3.0
