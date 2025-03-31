@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "talkio-dev"
+    "dev": "talkio-dev",
+    "prod": "talkio-73753"
   }
 }
