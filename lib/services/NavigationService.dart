@@ -3,6 +3,10 @@ import 'package:page_transition/page_transition.dart';
 
 abstract class NavigationService {
   
+  //late final GlobalKey<NavigatorState> navigator;
+
+  GlobalKey<NavigatorState> get navigator;
+  void set navigator(GlobalKey<NavigatorState> navigator);
 
   Future navigateTo<T>({
     required String routeName,

@@ -19,7 +19,7 @@ exports.sendNotificationOnMessage = onDocumentCreated(
     const senderId = message.userId;
     const senderDoc = await db.collection("users").doc(senderId).get();
     const senderName = senderDoc.data()?.name || "Someone";
-    
+
     const chatId = event.params.chatId;
     const chatSnap = await db.collection("chats").doc(chatId).get();
     const users = chatSnap.data()?.users;
@@ -39,7 +39,6 @@ exports.sendNotificationOnMessage = onDocumentCreated(
       },
     });
 
-    // Remover tokens inválidos
     const invalidTokens = [];
     response.responses.forEach((res, index) => {
       const error = res.error;
