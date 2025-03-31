@@ -12,6 +12,7 @@
 - 📩 Real-time message updates with Firestore  
 - 🔎 Search bar to filter messges  
 - 📱 Responsive and modern chat UI
+- 🔔 Real-time notifications for new messages
 
 ## 📱 Screenshots
 
