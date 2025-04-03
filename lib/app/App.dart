@@ -17,7 +17,6 @@ class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> _navigator = GlobalKey();
   late final NavigationService _navigationService;
   late final NotificationService _notificationService;
-  late final MessagingService _messagingService;
 
   @override
   void initState() {
@@ -26,9 +25,6 @@ class _MyAppState extends State<MyApp> {
 
     _notificationService = context.read<NotificationService>();
     _notificationService.initialize();
-
-    _messagingService = context.read<MessagingService>();
-    _messagingService.initialize();
 
     super.initState();
   }
