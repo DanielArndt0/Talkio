@@ -10,9 +10,8 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   try {
     await MessagingService.initialize();
-    print('Token: $tokenFCM');
   } catch (error) {
-    print(error.toString());
+    // Put something here
   }
   runApp(providerHandler);
 }
