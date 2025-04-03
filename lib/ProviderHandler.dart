@@ -15,12 +15,10 @@ import 'package:talkio/controllers/impl/SignUpControllerImpl.dart';
 import 'package:talkio/providers/FbAuthProvider.dart';
 import 'package:talkio/services/AuthService.dart';
 import 'package:talkio/services/CloudDBService.dart';
-import 'package:talkio/services/MessagingService.dart';
 import 'package:talkio/services/NavigationService.dart';
 import 'package:talkio/services/NotificationService.dart';
 import 'package:talkio/services/impl/AuthServiceImpl.dart';
 import 'package:talkio/services/impl/CloudDBServiceImpl.dart';
-import 'package:talkio/services/impl/MessagingServiceImpl.dart';
 import 'package:talkio/services/impl/NavigationServiceImpl.dart';
 import 'package:talkio/services/impl/NotificationServiceImpl.dart';
 
@@ -36,11 +34,6 @@ MultiProvider providerHandler = MultiProvider(
       create: (context) => NavigationServiceImpl.instance,
     ),
     Provider<CloudDBService>(create: (context) => CloudDBServiceImpl.instance),
-    ProxyProvider<NotificationService, MessagingService>(
-      update:
-          (context, notificationService, previous) =>
-              MessagingServiceImpl(notificationService: notificationService),
-    ),
     ProxyProvider<FbAuthProvider, AuthService>(
       update:
           (context, authProvider, previous) =>
@@ -51,8 +44,7 @@ MultiProvider providerHandler = MultiProvider(
           (context, navigationService, previous) =>
               NavigationControllerImpl(navigationService: navigationService),
     ),
-    ProxyProvider4<
-      MessagingService,
+    ProxyProvider3<
       CloudDBService,
       AuthService,
       NavigationController,
@@ -61,20 +53,17 @@ MultiProvider providerHandler = MultiProvider(
       update:
           (
             context,
-            messagingService,
             cloudDBService,
             authService,
             navigationController,
             previous,
           ) => SignInSocialControllerImpl(
-            messagingService: messagingService,
             cloudDbService: cloudDBService,
             authService: authService,
             navigationController: navigationController,
           ),
     ),
-    ProxyProvider4<
-      MessagingService,
+    ProxyProvider3<
       AuthService,
       CloudDBService,
       NavigationController,
@@ -83,13 +72,11 @@ MultiProvider providerHandler = MultiProvider(
       update:
           (
             context,
-            messagingService,
             authService,
             cloudDbService,
             navigationController,
             previous,
           ) => SignInControllerImpl(
-            messagingService: messagingService,
             authService: authService,
             cloudDbService: cloudDbService,
             navigationController: navigationController,
@@ -114,8 +101,7 @@ MultiProvider providerHandler = MultiProvider(
             navigationController: navigationController,
           ),
     ),
-    ProxyProvider4<
-      MessagingService,
+    ProxyProvider3<
       AuthService,
       CloudDBService,
       NavigationController,
@@ -124,13 +110,11 @@ MultiProvider providerHandler = MultiProvider(
       update:
           (
             context,
-            messagingService,
             authService,
             cloudDbService,
             navigationController,
             previous,
           ) => SignUpControllerImpl(
-            messagingService: messagingService,
             authService: authService,
             cloudDbService: cloudDbService,
             navigationController: navigationController,

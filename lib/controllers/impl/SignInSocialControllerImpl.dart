@@ -1,24 +1,22 @@
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:flutter/src/widgets/form.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:talkio/Global.dart';
 import 'package:talkio/controllers/NavigationController.dart';
 import 'package:talkio/controllers/SignInSocialController.dart';
 import 'package:talkio/errors/AuthException.dart';
 import 'package:talkio/services/AuthService.dart';
 import 'package:talkio/services/CloudDBService.dart';
-import 'package:talkio/services/MessagingService.dart';
 
 class SignInSocialControllerImpl implements SignInSocialController {
   SignInSocialControllerImpl({
     required this.authService,
     required this.navigationController,
     required this.cloudDbService,
-    required this.messagingService,
   });
 
   late final AuthService authService;
   late final CloudDBService cloudDbService;
-  late final MessagingService messagingService;
   late final NavigationController navigationController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _forgotPasswordFormKey = GlobalKey<FormState>();
@@ -63,7 +61,7 @@ class SignInSocialControllerImpl implements SignInSocialController {
 
         await cloudDbService.updateTokenFCM(
           userId: authService.currentUser.uid,
-          token: messagingService.token,
+          token: tokenFCM,
         );
 
         navigationController.goToHome();
