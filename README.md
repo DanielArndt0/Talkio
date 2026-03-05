@@ -1,20 +1,20 @@
 
-# 📱 Talkio
+#  Talkio
 
 **Talkio** is a real-time messaging app built with Flutter and Firebase. It enables private one-on-one chats, features auto-generated avatars, real-time typing indicators, push notifications, and provides a clean, modern user experience.
 
-## 🚀 Features
+## Features
 
-- 🔐 Firebase Authentication  
-- 💬 Private 1-to-1 chat system  
-- 👤 Auto-generated avatars based on user UID  
-- ✍️ Typing status indication in real time  
-- 📩 Real-time message updates with Firestore  
-- 🔎 Search bar to filter messges  
-- 📱 Responsive and modern chat UI
-- 🔔 Real-time notifications for new messages
+-  Firebase Authentication  
+-  Private 1-to-1 chat system  
+-  Auto-generated avatars based on user UID  
+-  Typing status indication in real time  
+-  Real-time message updates with Firestore  
+-  Search bar to filter messges  
+-  Responsive and modern chat UI
+-  Real-time notifications for new messages
 
-## 📱 Screenshots
+##  Screenshots
 
 <p align="center">
   <img src="images/3.jpg" width="150" />
@@ -24,14 +24,14 @@
   <img src="images/7.jpg" width="150" />
 </p>
 
-## 🛠 Technologies
+##  Technologies
 
 - [Flutter](https://flutter.dev/)
 - [Firebase CLI](https://firebase.google.com/docs/cli)
 - [Firebase](https://firebase.google.com/) (Auth, Firestore, FCM, Functions)
 - [Provider](https://pub.dev/packages/provider)
 
-## 📂 Project Structure
+##  Project Structure
 ```bash
 lib/
 ├── app/             # App configuration and main setup
@@ -48,7 +48,7 @@ lib/
 └── validators/      # Input validators and schemas
 ```
 
-## 📦 Installation
+##  Installation
 ```bash
 git clone https://github.com/DanielArndt0/Talkio.git
 cd talkio
@@ -72,15 +72,15 @@ and your environment config in **env/env.local.json.**
 }
 ```
 
-## 🧪 Build
+##  Build
 ```bash
 flutter build apk --release --dart-define-from-file=env/env.local.json
 ```
 ---
 
-## 🔐 Generating Keystore and Production Certificates
+##  Generating Keystore and Production Certificates
 
-### 📦 Generate a Keystore
+###  Generate a Keystore
 Use the command below to generate your production keystore file (`upload-keystore.p12`):
 
 ```bash
@@ -90,14 +90,14 @@ keytool -genkey -v -keystore upload-keystore.p12 \
 ```
 You will be prompted to enter your name, organization, and keystore password.
 
-🔑 Get SHA1 / SHA256 fingerprints
+ Get SHA1 / SHA256 fingerprints
 Run this to retrieve your certificate fingerprints (required by Firebase):
 
 ```bash
 keytool -list -v -keystore upload-keystore.p12 -alias upload -storetype PKCS12
 ```
 
-## 🔐 Generating SHA-1 and SHA-256 for Debug
+##  Generating SHA-1 and SHA-256 for Debug
 To generate your app’s debug and release certificate fingerprints (SHA-1 and SHA-256), use the following command from the android/ directory:
 
 ### 🔧 For Debug (Default keystore)
@@ -107,7 +107,7 @@ To generate your app’s debug and release certificate fingerprints (SHA-1 and S
 
 ---
 
-## 🧰 Versions
+##  Versions
 
 | Tool              | Version         |
 |-------------------|-----------------|
@@ -123,6 +123,5 @@ To generate your app’s debug and release certificate fingerprints (SHA-1 and S
 | **Groovy**        | 3.0.22           |
 ---
 
-## ✨ Author
-
-Made with 💙 by [@DanielArndt0](https://github.com/DanielArndt0)
+##  Author
+[@DanielArndt0](https://github.com/DanielArndt0)
